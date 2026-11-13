@@ -13,7 +13,7 @@ By default, the VTA design targets 333 MHz. We use 100 MHz for stability and fas
 self.fpga_freq = 100
 self.fpga_per = 10
 ```
-*(Note: `fpga_per` is the period in nanoseconds. 10ns = 100 MHz).*
+
 
 ## 2. Bypass the Crashing C-Simulation (Critical)
 
@@ -29,16 +29,23 @@ Vivado 2020.1's HLS simulation crashes with a `SIGSEGV` error on modern Windows 
 ## 3. Run the Build
 
 1. Open Command Prompt and navigate to the build directory:
-   
+   ```cmd
+   cd /d C:\Users\LordFasha23\Work\CS_Files\FPGA\tvm-vta\hardware\xilinx
+   ```
 2. Set the Vivado PATH:
-   
+   ```cmd
+   set PATH=C:\Vivado\Vivado\2020.1\bin;%PATH%
+   ```
 3. Ensure the ZCU104 configuration is active:
-  
+   ```cmd
+   copy /y ..\..\config\zcu104_sample.json ..\..\config\vta_config.json
    ```
 4. Run the build:
-    python make.py bit
+   ```cmd
+   python make.py bit
+   ```
 
-
+ When it finishes, look for `impl_1 finished`. (it tends to get stuck here, waiting for this process. to check if the process is dead, check cpu usage by vivado. If it isnt using the cpu means the process is dead)
 
 ## 4. Locate the Files
 
@@ -46,5 +53,6 @@ The `.bit` file is exported to:
 `build\hardware\xilinx\vivado\zcu104_1x16_i8w8a32_15_15_18_17\export\vta.bit`
 
 **Critical:** The build script does not automatically copy the `.hwh` (hardware handoff) file to the export folder. 
-1. Search the `vivado` build folder for `*.hwh` 
+1. Search the `vivado` build folder for `*.hwh` (it is usually named `vta_wrapper.hwh`).
+2. Copy it to the `export` folder.
 3. Rename it to `vta.hwh` so it matches the `.bit` file.

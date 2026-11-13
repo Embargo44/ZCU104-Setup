@@ -6,13 +6,9 @@ We do not use the official Apache TVM repository for the hardware build. We use 
 
 Open Command Prompt and clone the specific commit that is known to work:
 
-```cmd
 
 git clone https://github.com/l0r3m1psum/tvm-vta.git
 cd tvm-vta
-git checkout 15f28aa
-```
-*(Note: You will see a "detached HEAD" warning. This is normal and expected.)*
 
 ## 2. Fix the Build Script (`make.py`)
 
