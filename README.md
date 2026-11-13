@@ -64,3 +64,7 @@ Compile custom C++ inference binary (`run_fpga.cpp`) directly on the board, expl
 - [06 - Hardware Loading](docs/docs06-loading.md)
 - [07 - Host Compiler](docs/docs07-host-compiler.md)
 - [08 - Execution](docs/docs08-execution.md)
+
+
+
+jns
