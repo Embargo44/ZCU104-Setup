@@ -27,3 +27,5 @@ Execute your newly compiled program with your test data:
 ```bash
 sudo ./run_fpga my_program.bin test.data
 ```
+
+(The fpga test setup I have is only for me. Find your own ways to test it)

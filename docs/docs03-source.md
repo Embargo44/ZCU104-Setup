@@ -1,23 +1,23 @@
 # 03 - Source Acquisition
 
-We do not use the official Apache TVM repository for the hardware build. We use a community fork (`l0r3m1psum/tvm-vta`) because it includes a Python build script (`make.py`) that correctly handles Windows file paths.
+## 1. Configure 100 MHz Clock
+Open `config/pkg_config.py`. Find the `zcu104` block (around line 150). Change the frequency and period variables:
+```python
+self.fpga_freq = 100
+self.fpga_per = 10
+```
 
-## 1. Clone the Fork
 
-Open Command Prompt and clone the specific commit that is known to work:
-
-
+## 2. Clone the Fork
+We use the `l0r3m1psum/tvm-vta` fork because the official repo's Makefile breaks on Windows paths.
+```cmd
 git clone https://github.com/l0r3m1psum/tvm-vta.git
 cd tvm-vta
+git checkout 15f28aa
+```
 
-## 2. Fix the Build Script (`make.py`)
-
-Out of the box, `make.py` has bugs that break the build on Windows. It calls the main Vivado binary for the HLS step instead of `vivado_hls`.
-
-1. Open `hardware/xilinx/make.py` in Notepad.
-2. Find the `task_ip()` function.
-3. Replace its `cmd` block with this exact code:
-
+## 3. Fix `make.py`
+Open `hardware/xilinx/make.py`. Find the `task_ip()` function and replace its `cmd` block with:
 ```python
     cmd = [
         VIVADO_HLS,
@@ -28,3 +28,7 @@ Out of the box, `make.py` has bugs that break the build on Windows. It calls the
     ]
 ```
 
+
+
+
+**You can also run the script fromm - scripts/patch_vivado_build.py to do this all for you**

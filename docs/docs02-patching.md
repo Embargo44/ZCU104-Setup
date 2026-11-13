@@ -14,7 +14,7 @@ Vivado 2020.1 has a bug that breaks IP generation. So we must apply two official
     *   Uncheck everything else (7 Series, UltraScale, Vitis) to save ~20 GB of disk space.
 6.  **Install Path:** Set to a short root path like `C:\Vivado\`.
     *   *Why:* Vivado has a 260-character Windows path limit. Deeply nested build files will crash the synthesis if installed deep in a user folder.
-7.  Let it install (takes 45–90 minutes). Leave "Install Cable Drivers" checked.
+7.  Leave "Install Cable Drivers" checked.
 
 ## 2. Patch 1: Y2K22 Bug Fix
 
@@ -38,4 +38,11 @@ This patch updates the board and CED store files.
 1.  Locate `AR75516_vivado_2020_1_1_preliminary_rev1.zip`.
 2.  Extract the contents directly into your Vivado root folder (`C:\Vivado\`).
 3.  When Windows asks to overwrite files, click **Yes**.
+
+## 4. Verify
+
+dir ~Vivado\y2k22_patch\patch.py
+dir ~\Vivado\Vivado\2020.1\common\scripts\automg_patch_20220104.tcl
+
+make sure these files exist
 
